@@ -3,6 +3,7 @@ const express = require("express");
 const bookRouter = require("./routes/bookRouter");
 const purchaseHistoryRouter = require("./routes/purchaseHistoryRouter");
 const { login, register } = require("./controllers/auth");
+const verifyToken = require("./utils/verifyToken");
 require("dotenv").config();
 
 const app = express();
@@ -39,8 +40,8 @@ mongoose
 
 app.post("/login", login);
 app.post("/register", register);
-// app.use("/books", "", bookRouter);
-// app.use("/purchaseHistory", "", purchaseHistoryRouter);
+app.use("/books", verifyToken, bookRouter);
+app.use("/purchaseHistory", verifyToken, purchaseHistoryRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on PORT ${process.env.PORT}`);

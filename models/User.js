@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 // Define user schema
 const userSchema = new mongoose.Schema(
   {
-    email: { type: String, unique: true },
+    email: { type: String, unique: true, trim: true },
     password: String,
     role: { type: String, enum: ["Author", "Admin", "Retail User"] },
   },

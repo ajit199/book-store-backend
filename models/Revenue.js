@@ -7,7 +7,9 @@ const revenueSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
     },
-    revenue: Number,
+    revenue: {
+      type: mongoose.Types.Decimal128,
+    },
   },
   { timestamps: { createdAt: true } }
 );
